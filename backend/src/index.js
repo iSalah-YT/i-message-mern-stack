@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { clerkMiddleware } from '@clerk/express';
 import { connectDB } from './lib/db.js';
+import job from './lib/cron.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,4 +36,6 @@ app.get('/{*any}', (req, res) => {
 app.listen(PORT, async () => {
   await connectDB();
   console.log(`Server is running on port ${PORT}`);
+
+  if (process.env.NODE_ENV === 'production') job.start();
 });
