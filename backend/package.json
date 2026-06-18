@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && copyfiles -u 1 src/**/* dist",
+    "build": "rimraf dist && copyfiles -u 1 src dist",
     "dev": "node --watch src/index.js",
     "start": "node src/index.js"
   },
