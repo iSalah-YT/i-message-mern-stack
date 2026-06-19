@@ -8,6 +8,7 @@ import { connectDB } from './lib/db.js';
 import job from './lib/cron.js';
 
 import clerkWebhook from './webhooks/clerk.webhook.js';
+import authRoutes from './routes/auth.route.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,6 +32,8 @@ app.use(clerkMiddleware());
 app.get('/health', (req, res) => {
   res.status(200).json({ ok: true, message: 'Server is healthy' });
 });
+
+app.use('/api/auth', authRoutes);
 // app.use('/api/messages', messagesRouter);
 // app.use('/api/users', usersRouter);
 // etc...
