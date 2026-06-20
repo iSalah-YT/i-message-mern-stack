@@ -9,6 +9,7 @@ import job from './lib/cron.js';
 
 import clerkWebhook from './webhooks/clerk.webhook.js';
 import authRoutes from './routes/auth.route.js';
+import messageRoutes from './routes/message.route.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +35,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/messages', messageRoutes);
 // app.use('/api/messages', messagesRouter);
 // app.use('/api/users', usersRouter);
 // etc...
