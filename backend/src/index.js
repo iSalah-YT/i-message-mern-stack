@@ -10,11 +10,11 @@ import job from './lib/cron.js';
 import clerkWebhook from './webhooks/clerk.webhook.js';
 import authRoutes from './routes/auth.route.js';
 import messageRoutes from './routes/message.route.js';
+import { app, server } from './lib/socket.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 
@@ -47,7 +47,7 @@ app.get('/{*any}', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-app.listen(PORT, async () => {
+server.listen(PORT, async () => {
   await connectDB();
   console.log(`Server is running on port ${PORT}`);
 
